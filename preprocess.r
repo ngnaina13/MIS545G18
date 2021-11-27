@@ -90,7 +90,13 @@ corrplot(cor(telecomVisNumeric),
 # --  Note: if your algorithm have to do extra preprocess, you have to care 
 #           about the threshold of 0.7, then remove the variables.(See HW6) 
 
-
+# Display scatterplots
+telecomVisNumeric %>%
+  ggplot() +
+  geom_point(mapping = aes(y = tenure , x = MonthlyCharges), color = "blue",
+             size = 2) +
+  labs(title = "xxxxx",
+       x = "tenure", y = "MonthlyCharges")
 
 #========
 # Categorical data analysis
