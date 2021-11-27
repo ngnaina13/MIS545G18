@@ -42,6 +42,68 @@ summary(telecomNoNA)
 telecomVisual <- telecomNoNA %>% 
   mutate(SeniorCitizen = ifelse(SeniorCitizen ==  0, 'NO', 'YES'))
 
+#========
+# Numeric data analysis
+#========
+summary(telecomVisual)
+telecomVisNumeric <- telecomVisual %>% 
+  select(tenure,MonthlyCharges,TotalCharges)
+
+# Display all boxplot
+displayAllBoxplots <- function(tibbleDataset) {
+  tibbleDataset %>% 
+    keep(is.numeric) %>%
+    gather() %>%
+    ggplot() + 
+    geom_boxplot(mapping = aes(x=value, fill=key),
+                 color = "black",
+                 outlier.shape = 1) +
+    facet_wrap( ~ key, scales = "free") +
+    theme_minimal() +
+    coord_flip()
+}
+displayAllBoxplots(telecomVisual)
+# -- No outlier in the data
+
+# Display all histograms
+displayAllHistograms <- function(tibbleDataset) {
+  tibbleDataset %>% 
+    keep(is.numeric) %>%
+    gather() %>%
+    ggplot() + 
+    geom_histogram(mapping = aes(x=value, fill=key),
+                   color = "black") +
+    facet_wrap( ~ key, scales = "free") +
+    theme_minimal()
+}
+displayAllHistograms(telecomVisual)
+# -- Go to find the interesting points. 
+# -- Might need add the range in monthlyCharges as a category when improving
+
+
+# Display a correlation matrix
+round(cor(telecomVisNumeric),2)
+
+corrplot(cor(telecomVisNumeric),
+         method = "number",
+         type = "lower")
+# --  Note: if your algorithm have to do extra preprocess, you have to care 
+#           about the threshold of 0.7, then remove the variables.(See HW6) 
+
+
+
+#========
+# Categorical data analysis
+#========
+summary(telecomVisual)
+telecomVisual %>%
+ggplot() +
+  geom_bar(mapping = aes(x =Churn, fill = gender), color = "black") +
+  labs(title = "xxxx",
+     x = "xxxx", y = "number") +
+  coord_flip()
+# -- Go to find the interesting points. 
+
 
 
 #########################
