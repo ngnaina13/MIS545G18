@@ -7,12 +7,10 @@
 library(tidyverse)
 library(rpart.plot)
 
-# Read IndonesianRiceFarms.csv into a tibble called riceFarms (use the data 
-# types suggested at the bottom of these assignment instructions). Ensure you 
-# use the correct read_csv() function and not readcsv() or read.csv().
+# Read ModelChurn.csv into a tibble called telecom 
 telecom <- read_csv(file = "./data/ModelChurn.csv")
 
-# Display the summary of riceFarms in the console
+# Display the summary of telecom in the console
 summary(telecom)
 
 # Remove customerID
@@ -42,12 +40,12 @@ telecomChurnDecisiontreeModel <- rpart(formula = Churn ~.,
 print(telecomChurnDecisiontreeModel)
 
 # Predict classes for each record in the testing dataset and store them in 
-# riceFarmsPrediction
+# telecomChurnPrediction
 telecomChurnPrediction <- predict(telecomChurnDecisiontreeModel,
                                   telecomTesting,
                                   type = "class")
 
-# Display riceFarmsPrediction on the console
+# Display telecomChurnPrediction on the console
 print(telecomChurnPrediction)
 
 # Evaluate the model by forming a confusion matrix
