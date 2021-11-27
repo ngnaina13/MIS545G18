@@ -100,8 +100,7 @@ telecomVisual %>%
 ggplot() +
   geom_bar(mapping = aes(x =Churn, fill = gender), color = "black") +
   labs(title = "xxxx",
-     x = "xxxx", y = "number") +
-  coord_flip()
+     x = "xxxx", y = "number") 
 # -- Go to find the interesting points. 
 
 
